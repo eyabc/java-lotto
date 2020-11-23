@@ -6,8 +6,7 @@ import exception.InValidSizeOfLottoException;
 import java.util.*;
 import java.util.stream.Collectors;
 
-import static java.util.stream.Collectors.collectingAndThen;
-import static java.util.stream.Collectors.toList;
+import static java.util.stream.Collectors.*;
 
 public class Lotto {
     private static final int LOTTO_NUMBER_COUNT = 6;
@@ -41,7 +40,7 @@ public class Lotto {
     }
 
     private static void validateUnique(List<LottoBall> lottoBalls) {
-        if (lottoBalls.size() != new HashSet<>(lottoBalls).size()) {
+        if (lottoBalls.size() != lottoBalls.stream().distinct().collect(counting())) {
             throw new DuplicatedLottoNumberException();
         };
     }
