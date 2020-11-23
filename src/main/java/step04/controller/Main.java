@@ -1,4 +1,4 @@
-package step04;
+package step04.controller;
 
 import step04.domain.*;
 import step04.view.InputView;
@@ -13,16 +13,16 @@ public class Main {
         LottoCounter lottoCounter = LottoCounter.of(payment, countOfManualLottos);
 
         List<String> manualLottosNumbers = InputView.readManualLottos(countOfManualLottos);
-        Lottos manualLottos = LottoNumberParser.executeByMultiple(manualLottosNumbers);
+        Lottos manualLottos = LottoNumberGenerator.executeByMultiple(manualLottosNumbers);
 
         ResultView.showCountOfLotto(countOfManualLottos, lottoCounter.getCountOfAutoLotto());
 
         Lottos autoLottos = Lottos.of(lottoCounter.getCountOfAutoLotto());
-        Lottos totalLottos = autoLottos.addLottos(manualLottos);
+        Lottos totalLottos = autoLottos.concat(manualLottos);
 
         ResultView.showLottos(totalLottos.getLottos());
 
-        Lotto winningLotto = LottoNumberParser.execute(InputView.createWinningNumber());
+        Lotto winningLotto = LottoNumberGenerator.execute(InputView.createWinningNumber());
         LottoBall bonusBall = LottoBall.valueOf(InputView.pickBonusBall());
         WinningComposer winningComposer = WinningComposer.of(winningLotto, bonusBall);
 

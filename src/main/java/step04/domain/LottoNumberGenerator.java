@@ -6,7 +6,7 @@ import java.util.stream.Collectors;
 
 import static java.util.stream.Collectors.toList;
 
-public class LottoNumberParser {
+public class LottoNumberGenerator {
     private static String TOKEN = ", ";
 
     public static Lotto execute(String lottoNumbers) {
@@ -19,7 +19,7 @@ public class LottoNumberParser {
 
     public static Lottos executeByMultiple(List<String> lottos) {
         return lottos.stream()
-                .map(LottoNumberParser::execute)
+                .map(LottoNumberGenerator::execute)
                 .collect(Collectors.collectingAndThen(toList(), Lottos::of));
     }
 

@@ -1,8 +1,5 @@
 package step04.domain;
 
-import step04.Rank;
-import utils.DoubleParser;
-
 import java.util.EnumMap;
 import java.util.Map;
 import java.util.Objects;

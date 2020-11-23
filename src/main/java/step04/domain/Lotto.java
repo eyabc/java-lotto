@@ -25,6 +25,10 @@ public class Lotto {
                 .collect(collectingAndThen(toList(), Lotto::new));
     }
 
+    public static Lotto of(Integer... lottoBalls) {
+        return of(Arrays.stream(lottoBalls).collect(toList()));
+    }
+
     public int matchCount(Lotto targetLotto) {
         return (int)lotto.stream()
                 .filter(targetLotto::isContaining)

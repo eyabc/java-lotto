@@ -14,13 +14,13 @@ import java.util.stream.Stream;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatExceptionOfType;
 import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
 
-public class LottoNumberParserTest {
+public class LottoNumberGeneratorTest {
     @DisplayName("입력받은 lottoNumbers 를 토큰화")
     @Test
     public void test_execute() {
         assertThat(
-                LottoNumberParser.execute("1, 2, 3, 4, 5, 6")
-        ).isEqualTo(Lotto.of(Arrays.asList(1, 2, 3, 4, 5, 6)));
+                LottoNumberGenerator.execute("1, 2, 3, 4, 5, 6")
+        ).isEqualTo(Lotto.of(1, 2, 3, 4, 5, 6));
     }
 
     private static Stream<String> provideInvalidInputResult() {
@@ -33,7 +33,7 @@ public class LottoNumberParserTest {
     public void test_validateNumber_ThrowException(String inValidInput) {
         assertThatExceptionOfType(OutOfLottoNumberRangeException.class)
                 .isThrownBy(() -> {
-                    LottoNumberParser.execute(inValidInput);
+                    LottoNumberGenerator.execute(inValidInput);
                 });
     }
 
@@ -46,9 +46,9 @@ public class LottoNumberParserTest {
                                 "1, 10, 13, 14, 15, 20"
                         ),
                         Lottos.of(Arrays.asList(
-                                Lotto.of(Arrays.asList(1, 2, 3, 4, 5, 6)),
-                                Lotto.of(Arrays.asList(1, 2, 3, 4, 5, 10)),
-                                Lotto.of(Arrays.asList(1, 10, 13, 14, 15, 20))
+                                Lotto.of(1, 2, 3, 4, 5, 6),
+                                Lotto.of(1, 2, 3, 4, 5, 10),
+                                Lotto.of(1, 10, 13, 14, 15, 20)
                         ))
                 ));
     }
@@ -57,7 +57,7 @@ public class LottoNumberParserTest {
     @ParameterizedTest
     @MethodSource("provideLottoNumberListResult")
     void test_executeByMultiple(List<String> lottosNumbers, Lottos lottos) {
-        assertThat(LottoNumberParser.executeByMultiple(lottosNumbers))
+        assertThat(LottoNumberGenerator.executeByMultiple(lottosNumbers))
                 .isEqualTo(lottos);
     }
 }

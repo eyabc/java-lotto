@@ -1,7 +1,5 @@
 package step04.domain;
 
-import step04.Rank;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -26,8 +24,8 @@ public class Lottos {
     }
 
     private static List<Lotto> generateLottos(Integer countOfLotto) {
-        return IntStream.rangeClosed(1, countOfLotto)
-                .mapToObj((idx) -> LottoGenerator.generate())
+        return Stream.generate(LottoGenerator::generate)
+                .limit(countOfLotto - 1)
                 .collect(Collectors.toList());
     }
 
@@ -63,7 +61,7 @@ public class Lottos {
         return Objects.hash(lottos);
     }
 
-    public Lottos addLottos(Lottos addedLottos) {
+    public Lottos concat(Lottos addedLottos) {
         return Lottos.of(
                 Stream.concat(lottos.stream(), addedLottos.lottos.stream())
                         .collect(Collectors.toList())

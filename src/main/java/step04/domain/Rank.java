@@ -1,4 +1,4 @@
-package step04;
+package step04.domain;
 
 import java.util.stream.Stream;
 

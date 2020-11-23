@@ -32,12 +32,12 @@ public class LottoTest {
 
     private static Stream<Arguments> provideTargetLottoResult() {
         return Stream.of(
-                Arguments.of(Lotto.of(Arrays.asList(8, 1, 2, 3, 4, 5)), 1),
-                Arguments.of(Lotto.of(Arrays.asList(8, 21, 2, 3, 4, 5)), 2),
-                Arguments.of(Lotto.of(Arrays.asList(8, 21, 23, 3, 4, 5)), 3),
-                Arguments.of(Lotto.of(Arrays.asList(8, 21, 23, 41, 4, 5)), 4),
-                Arguments.of(Lotto.of(Arrays.asList(8, 21, 23, 41, 42, 5)), 5),
-                Arguments.of(Lotto.of(Arrays.asList(8, 21, 23, 41, 42, 43)), 6)
+                Arguments.of(Lotto.of(8, 1, 2, 3, 4, 5), 1),
+                Arguments.of(Lotto.of(8, 21, 2, 3, 4, 5), 2),
+                Arguments.of(Lotto.of(8, 21, 23, 3, 4, 5), 3),
+                Arguments.of(Lotto.of(8, 21, 23, 41, 4, 5), 4),
+                Arguments.of(Lotto.of(8, 21, 23, 41, 42, 5), 5),
+                Arguments.of(Lotto.of(8, 21, 23, 41, 42, 43), 6)
         );
     }
 
@@ -68,7 +68,7 @@ public class LottoTest {
     @DisplayName("로또 번호의 정렬")
     @Test
     void test_arrange() {
-        assertThat(Lotto.of(Arrays.asList(21, 8, 43, 23, 42, 41)))
+        assertThat(Lotto.of(21, 8, 43, 23, 42, 41))
                 .isEqualTo(Lotto.of(lottoBalls));
     }
 
@@ -76,7 +76,7 @@ public class LottoTest {
     @Test
     void test_validateUnique() {
         assertThatExceptionOfType(DuplicatedLottoNumberException.class)
-                .isThrownBy(() -> Lotto.of(Arrays.asList(8, 8, 42, 23, 42, 41)));
+                .isThrownBy(() -> Lotto.of(8, 8, 42, 23, 42, 41));
     }
 
     private static Stream<List<Integer>> provideInvalidSizeOfLottoResult() {

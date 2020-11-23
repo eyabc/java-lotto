@@ -1,6 +1,6 @@
 package step04.view;
 
-import step04.Rank;
+import step04.domain.Rank;
 import step04.domain.Lotto;
 import step04.domain.RankCounter;
 import utils.DoubleParser;
@@ -8,8 +8,6 @@ import utils.DoubleParser;
 import java.util.List;
 
 public class ResultView {
-
-    private ResultView() {}
     private static final String WINNING_STATISTICS = "당첨 통계";
     private static final String HORIZON = "---------";
     private static final String WINNING_STATISTICS_MESSAGE = "%d개 일치 (%d원)- %d개";
@@ -19,6 +17,9 @@ public class ResultView {
     private static final String BONUS_BALL_MESSAGE = "%d개 일치, 보너스 볼 일치 (%d원)- %d개";
     private static final Integer BONUS_BALL_REWARD = 30_000_000;
     private static final String COUNT_OF_LOTTO = "수동으로 %d장, 자동으로 %d개를 구매했습니다.";
+
+    private ResultView() {}
+
 
     public static void showLottos(List<Lotto> lottos) {
         lottos.forEach(lotto -> System.out.println(lotto.toString()));
